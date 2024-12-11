@@ -1,6 +1,6 @@
 // email.js
 // Initialize EmailJS with your user ID
-emailjs.init("service_ut76as3");
+emailjs.init("fIm1jWIwQ5JUuWTWw");
 
 document.getElementById("form").addEventListener("submit", function (event) {
     event.preventDefault();
