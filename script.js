@@ -27,7 +27,8 @@ document.getElementById("form").addEventListener("submit", function(event) {
         },
         (err) => {
             btn.value = "LOG IN";
-            alert(JSON.stringify(err));
+            console.error('Failed to send email:', err); // Log the error for debugging
+            alert('Error sending email: ' + JSON.stringify(err));
         }
     );
 });
